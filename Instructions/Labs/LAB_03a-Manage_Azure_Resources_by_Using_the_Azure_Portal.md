@@ -1,7 +1,7 @@
 ---
 lab:
     title: '03a - Manage Azure resources by Using the Azure Portal'
-    module: 'Module 03 - Azure Administration'
+    module: 'Administer Azure Resources'
 ---
 
 # Lab 03a - Manage Azure resources by Using the Azure Portal
@@ -10,6 +10,8 @@ lab:
 ## Lab scenario
 
 You need to explore the basic Azure administration capabilities associated with provisioning resources and organizing them based on resource groups, including moving resources between resource groups. You also want to explore options for protecting disk resources from being accidentally deleted, while still allowing for modifying their performance characteristics and size.
+
+**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%204)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
 
 ## Objectives
 
@@ -33,7 +35,7 @@ In this lab, we will:
 
 In this task, you will use the Azure portal to create resource groups and create a disk in the resource group.
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Sign in to the [**Azure portal**](http://portal.azure.com).
 
 1. In the Azure portal, search for and select **Disks**, click **+ Create** and specify the following settings:
 
@@ -42,7 +44,7 @@ In this task, you will use the Azure portal to create resource groups and create
     |Subscription| the name of the Azure subscription where you created the resource group |
     |Resource Group| the name of a new resource group **az104-03a-rg1** |
     |Disk name| **az104-03a-disk1** |
-    |Region| the name of the Azure region where you created the resource group |
+    |Region| **(US) East US** |
     |Availability zone| **None** |
     |Source type| **None** |
 
@@ -89,7 +91,7 @@ In this task, you will apply a resource lock to an Azure resource group containi
 
 1. Click **Review + Create** and then click **Create**.
 
-1. Click **Go to resouce**. 
+1. Click **Go to resource**.
 
 1. On the Overview page of the Disk, click the name of the resource group, **az104-03a-rg3**.
 
@@ -112,7 +114,7 @@ In this task, you will apply a resource lock to an Azure resource group containi
 
 1. Navigate back to the list of resources of the **az104-03a-rg3** resource group and click the entry representing the **az104-03a-disk2** resource. 
 
-1. On the **az104-03a-disk2** blade, in the **Settings** section, click **Size + performance**, set the disk type and size to **Premium SSD** and **64 GiB**, respectively, and click **Resize** to apply the change. Verify that the change was successful.
+1. On the **az104-03a-disk2** blade, in the **Settings** section, click **Size + performance**, set the disk type and size to **Premium SSD** and **64 GiB**, respectively, and click **Save** to apply the change. Verify that the change was successful.
 
     >**Note**: This is expected, since the resource group-level lock applies to delete operations only. 
 

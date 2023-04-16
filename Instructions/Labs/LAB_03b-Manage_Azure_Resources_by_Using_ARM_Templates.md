@@ -1,7 +1,7 @@
 ---
 lab:
     title: '03b - Manage Azure resources by Using ARM Templates'
-    module: 'Module 03 - Azure Administration'
+    module: 'Administer Azure Resources'
 ---
 
 # Lab 03b - Manage Azure resources by Using ARM Templates
@@ -9,6 +9,8 @@ lab:
 
 ## Lab scenario
 Now that you explored the basic Azure administration capabilities associated with provisioning resources and organizing them based on resource groups by using the Azure portal, you need to carry out the equivalent task by using Azure Resource Manager templates.
+
+**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%205)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
 
 ## Objectives
 
@@ -30,9 +32,7 @@ In this lab, you will:
 
 #### Task 1: Review an ARM template for deployment of an Azure managed disk
 
-In this task, you will create an Azure disk resource by using an Azure Resource Manager template.
-
-1. Sign in to the [**Azure portal**](https://portal.azure.com).
+1. Sign in to the [**Azure portal**](http://portal.azure.com).
 
 1. In the Azure portal, search for and select **Resource groups**. 
 
@@ -72,12 +72,6 @@ In this task, you will create an Azure disk resource by using an Azure Resource 
    "sourceResourceId": {
        "type": "String"
    },
-   "sourceUri": {
-       "type": "String"
-   },
-   "osType": {
-       "type": "String"
-   },
    ```
 
    ```json
@@ -85,10 +79,6 @@ In this task, you will create an Azure disk resource by using an Azure Resource 
        "defaultValue": "V1",
        "type": "String"
    },      
-   ```
-
-   ```json
-   "osType": "[parameters('osType')]",
    ```
 
     >**Note**: These parameters are removed since they are not applicable to the current deployment. In particular, sourceResourceId, sourceUri, osType, and hyperVGeneration parameters are applicable to creating an Azure disk from an existing VHD file.

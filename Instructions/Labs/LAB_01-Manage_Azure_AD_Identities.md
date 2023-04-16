@@ -1,7 +1,7 @@
 ---
 lab:
     title: '01 - Manage Azure Active Directory Identities'
-    module: 'Module 01 - Identity'
+    module: 'Administer Identity'
 ---
 
 # Lab 01 - Manage Azure Active Directory Identities
@@ -12,14 +12,16 @@ lab:
 
 In order to allow Contoso users to authenticate by using Azure AD, you have been tasked with provisioning users and group accounts. Membership of the groups should be updated automatically based on the user job titles. You also need to create a test Azure AD tenant with a test user account and grant that account limited permissions to resources in the Contoso Azure subscription.
 
+**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%201)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same.
+
 ## Objectives
 
 In this lab, you will:
 
 + Task 1: Create and configure Azure AD users
 + Task 2: Create Azure AD groups with assigned and dynamic membership
-+ Task 3: Create an Azure Active Directory (AD) tenant
-+ Task 4: Manage Azure AD guest users 
++ Task 3: Create an Azure Active Directory (AD) tenant (Optional - lab environment issue)
++ Task 4: Manage Azure AD guest users (Optional - lab environment issue)
 
 ## Estimated timing: 30 minutes
 
@@ -44,7 +46,7 @@ In this task, you will create and configure Azure AD users.
 
 1. On the Azure Active Directory blade, in the **Manage** section, click **Users**, and then click your user account to display its **Profile** settings. 
 
-1. Click **edit**, in the **Settings** section, set **Usage location** to **United States** and click **save** to apply the change.
+1. Click **Edit properties**, and then in the **Settings** tab, set **Usage location** to **United States** and click **Save** to apply the change.
 
     >**Note**: This is necessary in order to assign an Azure AD Premium P2 license to your user account later in this lab.
 
@@ -111,6 +113,8 @@ In this task, you will create Azure Active Directory groups with assigned and dy
 1. Click **+ Try/Buy** and activate the free trial of Azure AD Premium P2.
 
 1. Refresh the browser window to verify that the activation was successful. 
+
+ >**Note**: It can take up to 10 minutes for the licenses to activate. Continue refreshing the page until it appears. Do not proceed until the licenses have been activated.
 
 1. From the **Licenses - All products** blade, select the **Azure Active Directory Premium P2** entry, and assign all license options of Azure AD Premium P2 to your user account and the two newly created user accounts.
 
@@ -179,9 +183,11 @@ In this task, you will create Azure Active Directory groups with assigned and dy
 
 1. Navigate back to the **Groups - All groups** blade, click the entry representing the **IT System Administrators** group and, on then display its **Members** blade. Verify that the **az104-01a-aaduser2** appears in the list of group members.
 
-#### Task 3: Create an Azure Active Directory (AD) tenant
+#### Task 3: Create an Azure Active Directory (AD) tenant (Optional - Lab environment issue)
 
 In this task, you will create a new Azure AD tenant.
+
+   >**Note**: There is a known issue with the Captcha verification in the lab environment. If you experience this issue, please skip both this task and the next. We are working on a solution.
 
 1. In the Azure portal, search for and select **Azure Active Directory**.
 
@@ -228,7 +234,7 @@ In this task, you will create Azure AD guest users and grant them access to reso
 
 1. Switch back to your default Azure AD tenant by using the **Directory + Subscription** button (directly to the right of the Cloud Shell button) in the Azure portal toolbar.
 
-1. Navigate back to the **Users - All users** blade, and then click **+ New guest user**.
+1. Navigate back to the **Users - All users** blade, and then click **+ Invite external user**.
 
 1. Invite a new guest user with the following settings (leave others with their defaults):
 
@@ -271,7 +277,7 @@ In this task, you will create Azure AD guest users and grant them access to reso
 
 1. Navigate back to the **Delete tenant 'Contoso Lab'** blade and click **Refresh**, click **Delete**.
 
-> **Note**: You will have to wait for the trial license expiration before you can delete the tenant. This does not incur any additional cost.
+> **Note**: If a tenant has a trial license, then you would have to wait for the trial license expiration before you could delete the tenant. This would not incur any additional cost.
 
 #### Review
 

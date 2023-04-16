@@ -1,7 +1,7 @@
 ---
 lab:
     title: '02b - Manage Governance via Azure Policy'
-    module: 'Module 02 - Governance and Compliance'
+    module: 'Administer Governance and Compliance'
 ---
 
 # Lab 02b - Manage Governance via Azure Policy
@@ -15,7 +15,9 @@ In order to improve management of Azure resources in Contoso, you have been task
 
 - ensuring that only properly tagged infrastructure resources can be added to infrastructure resource groups
 
-- remediating any non-compliant resources 
+- remediating any non-compliant resources
+
+**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%203)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
 
 ## Objectives
 
@@ -61,7 +63,7 @@ In this task, you will create and assign a tag to an Azure resource group via th
 
     **Note**: note what resource group the storage account is in, you'll need it later in the lab.
 
-1. On the resource group blade, click **Click here to add tags**.
+1. On the resource group blade, click **Tags** in the left menu and create a new tag.
 
 1. Create a tag with the following settings and Apply your change:
 
@@ -70,7 +72,7 @@ In this task, you will create and assign a tag to an Azure resource group via th
     | Name | **Role** |
     | Value | **Infra** |
 
-1. Navigate back to the storage account blade. Review the **Overview** information and note that the new tag was not automatically assigned to the storage account. 
+1. Click **Apply** and close the tag edition window to navigate back to the storage account blade. click on the ellipsis on the storage account and select **Edit tags** to note that the new tag was not automatically assigned to the storage account. 
 
 #### Task 2: Enforce tagging via an Azure policy
 
@@ -103,7 +105,7 @@ In this task, you will assign the built-in *Require a tag and its value on resou
 
     >**Note**: The **Assignment name** is automatically populated with the policy name you selected, but you can change it. You can also add an optional **Description**. **Assigned by** is automatically populated based on the user name creating the assignment. 
 
-1. Click **Next** and set **Parameters** to the following values:
+1. Click **Next** twice and set **Parameters** to the following values:
 
     | Setting | Value |
     | --- | --- |
@@ -124,17 +126,19 @@ In this task, you will assign the built-in *Require a tag and its value on resou
 
 1. On the resource group blade, click **+ Create** and then search for **Storage Account**, and click **+ Create**. 
 
-1. On the **Basics** tab of the **Create storage account** blade, verify that you are using the Resource Group that the Policy was applied to and specify the following settings (leave others with their defaults), click **Review + create** and then click **Create**:
+1. On the **Basics** tab of the **Create storage account** blade, verify that you are using the Resource Group that the Policy was applied to and specify the following settings (leave others with their defaults), click **Review** and then click **Create**:
 
     | Setting | Value |
     | --- | --- |
     | Storage account name | any globally unique combination of between 3 and 24 lower case letters and digits, starting with a letter |
 
+    >**Note**: You may receive a **Validation failed. Click here for details** error; If so, click the error message to identify the reason for the failure and skip the next step. 
+
 1. Once you create the deployment, you should see the **Deployment failed** message in the **Notifications** list of the portal. From the **Notifications** list, navigate to the deployment overview and click the **Deployment failed. Click here for details** message to identify the reason for the failure. 
 
     >**Note**: Verify whether the error message states that the resource deployment was disallowed by the policy. 
 
-    >**Note**: By clicking the **Tags** tab, you can find more details about the error, including the name of the role definition **Require Role tag with Infra value**. The deployment failed because the storage account you attempted to create did not have a tag named **Role** with its value set to **Infra**.
+    >**Note**: By clicking the **Raw Error** tab, you can find more details about the error, including the name of the role definition **Require Role tag with Infra value**. The deployment failed because the storage account you attempted to create did not have a tag named **Role** with its value set to **Infra**.
 
 #### Task 3: Apply tagging via an Azure policy
 
@@ -144,7 +148,7 @@ In this task, we will use a different policy definition to remediate any non-com
 
 1. In the **Authoring** section, click **Assignments**. 
 
-1. In the list of assignments, right click the ellipsis icon in the row representing the **Require Role tag with Infra value** policy assignment and use the **Delete assignment** menu item to delete the assignment. 
+1. In the list of assignments, click the ellipsis icon in the row representing the **Require Role tag with Infra value** policy assignment and use the **Delete assignment** menu item to delete the assignment.
 
 1. Click **Assign policy** and specify the **Scope** by clicking the ellipsis button and selecting the following values:
 
@@ -163,7 +167,7 @@ In this task, we will use a different policy definition to remediate any non-com
     | Description | **Inherit the Role tag and its Infra value from the Cloud Shell resource group if missing**|
     | Policy enforcement | Enabled |
 
-1. Click **Next** and set **Parameters** to the following values:
+1. Click **Next** twice and set **Parameters** to the following values:
 
     | Setting | Value |
     | --- | --- |
@@ -188,7 +192,7 @@ In this task, we will use a different policy definition to remediate any non-com
 
 1. On the resource group blade, click **+ Create** and then search for **Storage Account**, and click **+ Create**. 
 
-1. On the **Basics** tab of the **Create storage account** blade, verify that you are using the Resource Group that the Policy was applied to and specify the following settings (leave others with their defaults) and click **Review + create**:
+1. On the **Basics** tab of the **Create storage account** blade, verify that you are using the Resource Group that the Policy was applied to and specify the following settings (leave others with their defaults) and click **Review**:
 
     | Setting | Value |
     | --- | --- |
