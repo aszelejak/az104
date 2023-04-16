@@ -1,7 +1,7 @@
 ---
 lab:
     title: '08 - Manage Virtual Machines'
-    module: 'Module 08 - Virtual Machines'
+    module: 'Administer Virtual Machines'
 ---
 
 # Lab 08 - Manage Virtual Machines
@@ -10,6 +10,8 @@ lab:
 ## Lab scenario
 
 You were tasked with identifying different options for deploying and configuring Azure virtual machines. First, you need to determine different compute and storage resiliency and scalability options you can implement when using Azure virtual machines. Next, you need to investigate compute and storage resiliency and scalability options that are available when using Azure virtual machine scale sets. You also want to explore the ability to automatically configure virtual machines and virtual machine scale sets by using the Azure Virtual Machine Custom Script extension.
+
+**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%2012)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
 
 ## Objectives
 
@@ -40,7 +42,7 @@ In this task, you will deploy Azure virtual machines into different availability
 
 1. Sign in to the [Azure portal](http://portal.azure.com).
 
-1. In the Azure portal, search for and select **Virtual machines** and, on the **Virtual machines** blade, click **+ Create**, click **+ Virtual machine**.
+1. In the Azure portal, search for and select **Virtual machines** and, on the **Virtual machines** blade, click **+ Create**, click **+ Azure virtual machine**.
 
 1. On the **Basics** tab of the **Create a virtual machine** blade, specify the following settings (leave others with their default values):
 
@@ -58,14 +60,14 @@ In this task, you will deploy Azure virtual machines into different availability
     | Username | **Student** |
     | Password | **Provide a secure password** |
     | Public inbound ports | **None** |
-    | Would you like to use an existing Windows Server license? | **No** |
+    | Would you like to use an existing Windows Server license? | **Unchecked** |
 
 1. Click **Next: Disks >** and, on the **Disks** tab of the **Create a virtual machine** blade, specify the following settings (leave others with their default values):
 
     | Setting | Value |
     | --- | --- |
     | OS disk type | **Premium SSD** |
-    | Enable Ultra Disk compatibility | **No** |
+    | Enable Ultra Disk compatibility | **Unchecked** |
 
 1. Click **Next: Networking >** and, on the **Networking** tab of the **Create a virtual machine** blade, click **Create new** below the **Virtual network** textbox.
 
@@ -86,18 +88,23 @@ In this task, you will deploy Azure virtual machines into different availability
     | Public IP | **default** |
     | NIC network security group | **basic** |
     | Public inbound Ports | **None** |
-     | Accelerated networking | **Off**
-    | Place this virtual machine behind an existing load balancing solution? | **No** |
+    | Accelerated networking | **Off**
+    | Place this virtual machine behind an existing load balancing solution? | **Unchecked** |
 
 1. Click **Next: Management >** and, on the **Management** tab of the **Create a virtual machine** blade, specify the following settings (leave others with their default values):
 
     | Setting | Value |
     | --- | --- |
-    | Boot diagnostics | **Enable with custom storage account** |
-    | Diagnostics storage account | accept the default value |
     | Patch orchestration options | **Manual updates** |  
 
-    >**Note**: If necessary, select an existing storage account in the dropdown list. Record the name of the storage account. You will use it in the next task.
+1. Click **Next: Monitoring >** and, on the **Monitoring** tab of the **Create a virtual machine** blade, specify the following settings (leave others with their default values):
+
+    | Setting | Value |
+    | --- | --- |
+    | Boot diagnostics | **Enable with custom storage account** |
+    | Diagnostics storage account | **accept the default value** |
+
+    >**Note**: If necessary, select an existing storage account in the dropdown list or create a new storage account. Record the name of the storage account. You will use it in the next task.
 
 1. Click **Next: Advanced >**, on the **Advanced** tab of the **Create a virtual machine** blade, review the available settings without modifying any of them, and click **Review + Create**.
 
@@ -116,7 +123,7 @@ In this task, you will deploy Azure virtual machines into different availability
     | Resource Group | **az104-08-rg01** |
     | Network Interface Name | **az104-08-vm1-nic1** |
     | Public IP Address Name | **az104-08-vm1-ip** |
-    | Virtual Machine Name | **az104-08-vm1** |
+    | Virtual Machine Name, Virtual Machine Name1, Virtual Machine Computer Name   | **az104-08-vm1** |
     | Virtual Machine RG | **az104-08-rg01** |    
     | Admin Username | **Student** |
     | Admin Password | **Provide a secure password**  |
@@ -255,7 +262,7 @@ In this task you will scale compute for Azure virtual machines by changing their
    ```powershell
    New-StoragePool -FriendlyName storagepool1 -StorageSubsystemFriendlyName "Windows Storage*" -PhysicalDisks (Get-PhysicalDisk -CanPool $true)
 
-   New-VirtualDisk -StoragePoolFriendlyName storagepool1 -FriendlyName virtualdisk1 -Size 2046GB -ResiliencySettingName Simple -ProvisioningType Fixed
+   New-VirtualDisk -StoragePoolFriendlyName storagepool1 -FriendlyName virtualdisk1 -Size 64GB -ResiliencySettingName Simple -ProvisioningType Fixed
 
    Initialize-Disk -VirtualDisk (Get-VirtualDisk -FriendlyName virtualdisk1)
 
@@ -283,7 +290,7 @@ In this task you will scale compute for Azure virtual machines by changing their
 
     >**Note**: This section of the template defines the same Azure virtual machine size as the one you specified for the first virtual machine via the Azure portal.
 
-1. On the **Edit template** blade, in the section displaying the content of the template, replace line **51** (`"dataDisks": [ ]` line) with the following code :
+1. On the **Edit template** blade, in the section displaying the content of the template, replace line (`"dataDisks": [ ]` line) with the following code :
 
    ```json
                     "dataDisks": [
@@ -365,7 +372,7 @@ In this task, you will deploy Azure virtual machine scale set across availabilit
     | Size | **Standard D2s_v3** |
     | Username | **Student** |
     | Password | **Provide a secure password**  |
-    | Already have a Windows Server license? | **No** |
+    | Already have a Windows Server license? | **Unchecked** |
 
     >**Note**: For the list of Azure regions which support deployment of Windows virtual machines to availability zones, refer to [What are Availability Zones in Azure?](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview)
 
@@ -472,7 +479,7 @@ In this task, you will install Windows Server Web Server role on the instances o
 
 1. In the Azure portal, navigate back to the **Virtual machine scale sets** blade and click **az10408vmss0**.
 
-1. On the **az10408vmss0** blade, in the **Settings** section, click **Extensions**, and the click **+ Add**.
+1. On the **az10408vmss0** blade, in the **Settings** section, click **Extensions and applications**, and the click **+ Add**.
 
 1. On the **New resource** blade, click **Custom Script Extension** and then click **Next**.
 
@@ -582,7 +589,7 @@ In this task, you will change the size of virtual machine scale set instances, c
 
     >**Note**: The disk attached in the previous step is a raw disk. Before it can be used, it is necessary to create a partition, create a filesystem, and mount it. To accomplish this, you will use Azure virtual machine Custom Script extension. First, you will need to remove the existing Custom Script Extension.
 
-1. In the **Settings** section of the **az10408vmss0** blade, click **Extensions**, click **CustomScriptExtension**, and then click **Uninstall**.
+1. In the **Settings** section of the **az10408vmss0** blade, click **Extensions and applications**, click **CustomScriptExtension**, and then click **Uninstall**.
 
     >**Note**: Wait for uninstallation to complete.
 

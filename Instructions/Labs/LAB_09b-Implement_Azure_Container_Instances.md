@@ -1,7 +1,7 @@
 ---
 lab:
     title: '09b - Implement Azure Container Instances'
-    module: 'Module 09 - Serverless Computing'
+    module: 'Administer Serverless Computing'
 ---
 
 # Lab 09b - Implement Azure Container Instances
@@ -10,6 +10,8 @@ lab:
 ## Lab scenario
 
 Contoso wants to find a new platform for its virtualized workloads. You identified a number of container images that can be leveraged to accomplish this objective. Since you want to minimize container management, you plan to evaluate the use of Azure Container Instances for deployment of Docker images.
+
+**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-104%20Exam%20Guide%20-%20Microsoft%20Azure%20Administrator%20Exercise%2014)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
 
 ## Objectives
 
@@ -84,6 +86,8 @@ In this task, you will review the deployment of the container instance.
 >**Note**:  Don't worry if the lab resources cannot be immediately removed. Sometimes resources have dependencies and take a long time to delete. It is a common Administrator task to monitor resource usage, so just periodically review your resources in the Portal to see how the cleanup is going. 
 
 1. In the Azure portal, open the **PowerShell** session within the **Cloud Shell** pane.
+
+    >**Note**: Cloud Shell storage must be created for these commands to work. 
 
 1. List all resource groups created throughout the labs of this module by running the following command:
 
